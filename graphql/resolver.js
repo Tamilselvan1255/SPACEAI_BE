@@ -40,7 +40,7 @@ const resolvers = {
             return {
               success: false,
               message: "No Employees found!",
-              data: null,
+              data: [],
             };
           }
         } else {
