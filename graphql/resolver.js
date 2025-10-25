@@ -35,7 +35,7 @@ const resolvers = {
           existUsers = await employeeModel.find(
             {},
             { employeeName: 1, position: 1 }
-          );
+          ).sort({employeeName: 1});
           if (existUsers.length == 0) {
             return {
               success: false,
