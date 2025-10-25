@@ -2,6 +2,10 @@ const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   scalar JSON
+  type User {
+    email: String!
+    password: String!
+  }
   type Employee {
     employeeId: String!
     employeeName: String!
@@ -16,9 +20,20 @@ const typeDefs = gql`
   }
 
   type Message {
-    message: String!
-    success: Boolean!
+    message: String
+    success: Boolean
+    token: String
     data: JSON
+  }
+
+  input CreateUser {
+    email: String!
+    password: String!
+  }
+
+  input UserLogin {
+    email: String!
+    password: String!
   }
 
   input CreateEmployee {
@@ -37,9 +52,12 @@ const typeDefs = gql`
   type Query {
     _dummy: String
     getAllEmployees(employeeId: String): Message!
+    getEmployeeDepartments: Message!
   }
 
   type Mutation {
+    userRegister(input: CreateUser ): Message!
+    userLogin(input: UserLogin ): Message!
     createEmployee(input: CreateEmployee): Message!
     createDepartment(input: CreateDepartment): Message!
   }
